@@ -1,0 +1,3 @@
+Contents of somefile.txt
+line 2 of somefile.txt
+line 3 of somefile.txt
