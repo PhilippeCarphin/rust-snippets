@@ -4,12 +4,23 @@ use std::io;
 use std::io::BufRead;
 use std::fs::File;
 use std::path::Path;
+use std::process;
 
-fn main() -> Result<(), &'static str> {
+fn main() {
+    process::exit(match my_main() {
+                  Ok(_) => 0,
+                  Err(e) => {
+                      eprintln!("\x1b[1;31mERROR\x1b[0m: {:?}", e);
+                      1
+                  }
+    });
+}
+
+fn my_main() -> Result<(), &'static str> {
     let argv: Vec<String> = env::args().collect();
     // let mut filename = argv.remove(1);
     if argv.len() <= 1 {
-        return Err("Need one argument")
+        return Err("At least one argument is required");
     }
 
     /*
@@ -63,8 +74,8 @@ fn main() -> Result<(), &'static str> {
     } else {
         println!("read_lines({}) (from doc.rust-lang.org) returned an error thing", argv[1]);
     }
-    Ok(())
 
+    return Ok(());
 }
 
 // From https://doc.rust-lang.org/rust-by-example/std_misc/file/read_lines.html
