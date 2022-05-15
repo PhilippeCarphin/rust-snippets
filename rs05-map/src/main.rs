@@ -1,5 +1,11 @@
 use std::collections::HashMap;
-
+/*
+ * Basic demonstration of the use of HashMap.
+ *
+ * Note that the types of the keys and values have to be constant
+ * and also that the map can determine its types from the first
+ * call to insert.
+ */
 fn main() {
     // https://doc.rust-lang.org/book/ch08-03-hash-maps.html
 

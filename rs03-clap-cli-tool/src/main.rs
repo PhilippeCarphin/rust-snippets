@@ -1,5 +1,8 @@
 use clap::{Arg,Command};
-
+/*
+ * This demonstrates the use of the 'clap' package to handle command line
+ * arguments.
+ */
 fn main() {
     let my_app_args = Command::new("My App Name")
         .version("0.0.1")

@@ -1,4 +1,9 @@
 use std::env;
+/*
+ * Basic access to command line arguments.
+ *
+ * One should normally use 'clap' to handle command line arguments.
+ */
 fn main() {
 
     // https://doc.rust-lang.org/rust-by-example/std_misc/arg.html

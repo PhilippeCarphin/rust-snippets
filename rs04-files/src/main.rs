@@ -5,7 +5,12 @@ use std::io::BufRead;
 use std::fs::File;
 use std::path::Path;
 use std::process;
-
+/*
+ * This demonstrates basic file manipulations with two methods.  The first one
+ * uses fs::read_to_string() and the second one is with File::open() to get a
+ * handle to the open file to do other stuff with.  There is also a third
+ * version that is from the rust documentation.
+ */
 fn main() {
     process::exit(match my_main() {
                   Ok(_) => 0,

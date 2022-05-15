@@ -1,4 +1,8 @@
 use serde::{Deserialize, Serialize};
+/*
+ * Demonstrates the basic use of serde_json to parse JSON files into
+ * structs that we have defined.
+ */
 #[derive(Debug, Deserialize, Serialize)]
 struct Person {
     name: String,
