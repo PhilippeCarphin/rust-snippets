@@ -2,7 +2,7 @@
 
 use clap::CommandFactory;
 use clap::Parser;
-use clap_complete::{generate, Generator, Shell};
+use clap_complete;
 /*
  * This demonstrates the use of the 'clap' package to handle command line
  * arguments.
@@ -15,7 +15,7 @@ use clap_complete::{generate, Generator, Shell};
 pub struct AppOptions {
     /// The file argument for my application
     #[arg(short, long)]
-    file: std::path::PathBuf,
+    file: Option<std::path::PathBuf>,
     /// A flag controling a thing in my application
     #[arg(short, long)]
     boolean: Option<bool>,
@@ -23,12 +23,12 @@ pub struct AppOptions {
     ///
     /// which doesn't work yet
     #[arg(short, long)]
-    pub generator: Option<Shell>,
+    pub generator: Option<clap_complete::Shell>,
 
 }
 
-fn print_completions<G: Generator>(gen: G, cmd: &mut clap::Command) {
-    generate(gen, cmd, cmd.get_name().to_string(), &mut std::io::stdout());
+fn print_completions<G: clap_complete::Generator>(gen: G, cmd: &mut clap::Command) {
+    clap_complete::generate(gen, cmd, cmd.get_name().to_string(), &mut std::io::stdout());
 }
 
 
@@ -40,13 +40,14 @@ fn main() {
     match app_options.generator {
         Some(_) => {
                 // println!("shell: {:?}", shell);
-                if let Some(generator) = matches.get_one::<Shell>("generator") {
+                if let Some(generator) = matches.get_one::<clap_complete::Shell>("generator") {
                     let mut cmd = AppOptions::command();
                     eprintln!("Generating completion file for {generator}...");
                     print_completions(*generator, &mut cmd);
                 }
         },
         None => {
+            println!("{:#?}", app_options);
         }
     }
 }
